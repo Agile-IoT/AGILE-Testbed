@@ -64,6 +64,6 @@ attached to the AGILE Gateway in IoT-Lab.
 ## Upcoming support
 
 In the near-future, we plan to :
-* instead of SAMR21, use an [OpenLabs](http://openlabs.co/OSHW/Raspberry-Pi-802.15.4-radio) dongle
-on the AGILE gateways, following these [steps](https://github.com/RIOT-Makers/wpan-raspbian/wiki/Create-a-generic-Raspbian-image-with-6LoWPAN-support)
+* instead of SAMR21, use the Libelium Hat + [802.15.4 Shield](https://www.cooking-hacks.com/xbee-pro-802-15-4-sma-module), or an [OpenLabs](http://openlabs.co/OSHW/Raspberry-Pi-802.15.4-radio) dongle
+on the AGILE gateways following these [steps](https://github.com/RIOT-Makers/wpan-raspbian/wiki/Create-a-generic-Raspbian-image-with-6LoWPAN-support)
 * Switch from Raspbian to ResinOS
