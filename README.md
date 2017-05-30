@@ -22,7 +22,7 @@ Each AGILE Gateway deployed on IoT-Lab is accessible online, as described below.
 
 ### Setup
 
-Follow these [steps](Connecting-To-the-Agile-Gateways) to set up access to the AGILE Gateways on the IoT-Lab testbed.
+Follow these [steps](https://github.com/Agile-IoT/AGILE-Testbed/wiki/Connecting-To-the-Agile-Gateways) to set up access to the AGILE Gateways on the IoT-Lab testbed.
 
 ### Accessing AGILE OS on the Gateways
 
@@ -53,11 +53,11 @@ If you do not have one already, create your account on the
 following [the online tutorials](https://www.iot-lab.info/tutorials/).
 
 We assume basic [RIOT](http://riot-os.org) git and toolchain setup on your local computer.
-For newbies, we recommend following this [Getting Started documentation](https://github.com/RIOT-OS/RIOT/wiki).
+For newbies, we recommend following the beginning of this [tutorial](https://github.com/RIOT-OS/Tutorials/blob/master/README.md) (you can stop after completing Task 1).
 
 ### Using the SAMR21 as a 6LoWPAN border router
 
-Follow these [steps](6LoWPAN-Border-Router) to setup and start using an 6LoWPAN border router on a SAMR21 board
+Follow these [steps](https://github.com/Agile-IoT/AGILE-Testbed/wiki/6LoWPAN-Border-Router) to setup and start using an 6LoWPAN border router on a SAMR21 board
 attached to the AGILE Gateway in IoT-Lab.
 
 
