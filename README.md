@@ -2,15 +2,15 @@
 
 ### Available hardware
 
-- Two AGILE Gateways (makers version, Raspberry PI) available in the
+- Two AGILE Gateways (makers version, RaspberryPi) are deployed and available in the
 [Saclay site testbed](https://www.iot-lab.info/deployment/saclay/)
 
-- Each Pi is connected via serial USB to an
+- Each AGILE Gateway is connected via serial USB to an
 [Atmel SAMR21](http://www.atmel.com/tools/atsamr21-xpro.aspx)
 board which offers IEEE 802.15.4 wireless connection. The attached SAMR21 board
 can either be used from the Pi as client node, or as border router (see below).
 
-- Each Pi is observable via a webcam streamed online at [agile-pi-2](http://demo-fit.saclay.inria.fr/agile-pi-2?action=stream)
+- Each AGILE Gateway is observable via a webcam streamed online at [agile-pi-2](http://demo-fit.saclay.inria.fr/agile-pi-2?action=stream)
 and [agile-pi-3](http://demo-fit.saclay.inria.fr/agile-pi-3?action=stream)
 
 - Also available on the same IoT-Lab site: hundreds of [IoT-Lab M3 nodes](https://www.iot-lab.info/hardware/m3/), with bare-metal access. 
