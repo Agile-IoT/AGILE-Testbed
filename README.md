@@ -35,7 +35,7 @@ You can set this up from your command line on your local computer with the comma
 ```
     ssh -L8080:localhost:8080 -L8000:localhost:8000 \
         -L1880:localhost:1880 -L8083:localhost:8083 -L8086:localhost:8086 \
-        -L3000:localhost:3000 agile-pi-2
+        -L3000:localhost:3000 -L2000:localhost:2000 agile-pi-2
 ```
 
 At this point, you can access AGILE OS from your local computer, in a browser, at http://127.0.0.1:8000
