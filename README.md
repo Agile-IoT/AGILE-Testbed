@@ -72,12 +72,18 @@ This can only be performed on `agile-pi-5`.
             -L1880:localhost:1880 -L8083:localhost:8083 -L8086:localhost:8086 \
             -L3000:localhost:3000 -L2000:localhost:2000 agile-pi-5
 </pre>
-2. Ensure the SensorTag is up and listening to BLE incoming connections
-3. From you host, login AgileOS at http://localhost:8000
-4. Open the device manager, register and connect to the SensorTag device
-5. Open NodeRed and import the preconfigured `Library/test_sensortag_mqtt` flow
-6. Verify everything is connected correctly (websockets for sensortag and mqtt clients to iot.eclipse.org)
-7. Use Mosquitto MQTT client to subscribe to available topics:
+
+### Connecting the SensorTag in AgileOS
+
+1. Ensure the SensorTag is up and listening to BLE incoming connections
+2. From you host, login AgileOS at http://localhost:8000
+3. Open the device manager, register and connect to the SensorTag device
+
+### Connect the gateway to Eclipse MQTT broker
+
+1. Open NodeRed and import the preconfigured `Library/test_sensortag_mqtt` flow
+2. Verify everything is connected correctly (websockets for sensortag and mqtt clients to iot.eclipse.org)
+3. Use Mosquitto MQTT client to subscribe to available topics:
 <pre>
     mosquitto_sub -h iot.eclipse.org -t saclay/agile/sensors/temperature
     mosquitto_sub -h iot.eclipse.org -t saclay/agile/sensors/humidity
