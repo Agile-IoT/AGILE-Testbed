@@ -26,9 +26,9 @@ Follow these [steps](https://github.com/Agile-IoT/AGILE-Testbed/wiki/Connecting-
 
 ### Accessing AGILE OS on the Gateways
 
-AGILE software is installed and running on `agile-pi-2` gateway but cannot be
+AGILE software is installed and running on `agile-pi-2`, `agile-pi-3` and `agile-pi-5` gateways but cannot be
 accessed directly from the web, for security reasons. 
-To access AGILE OS running on agile-pi-2, you need to start an SSH tunnel
+For examples, to access AGILE OS running on agile-pi-2, you need to start an SSH tunnel
 between your local computer and the AGILE gateway.
 
 You can set this up from your command line on your local computer with the command:
@@ -42,7 +42,7 @@ At this point, you can access AGILE OS from your local computer, in a browser, a
 
 ## Connecting with RIOT nodes using IEEE 802.15.4
 
-Each AGILE gateway can use its attached Atmel SARM21 xpro board as a
+AGILE gateways `agile-pi-2` and `agile-pi-3` can use their attached Atmel SARM21 xpro board as a
 IPv6 border router between the IEEE 802.15.4 wireless network used between IoT-Lab nodes and the
 AGILE gateway, as described below.
 
@@ -60,6 +60,28 @@ For newbies, we recommend following the beginning of this [tutorial](https://git
 Follow these [steps](https://github.com/Agile-IoT/AGILE-Testbed/wiki/6LoWPAN-Border-Router) to setup and start using an 6LoWPAN border router on a SAMR21 board
 attached to the AGILE Gateway in IoT-Lab.
 
+## Connecting with TI SensorTag node using BLE
+
+This can only be performed on `agile-pi-5`.
+
+### Connecting to Agile OS
+
+1. Open an SSH tunnel to the gateways to map Agile OS local ports on your local host:
+<pre>
+    ssh -L8080:localhost:8080 -L8000:localhost:8000 \
+            -L1880:localhost:1880 -L8083:localhost:8083 -L8086:localhost:8086 \
+            -L3000:localhost:3000 -L2000:localhost:2000 agile-pi-5
+</pre>
+2. Ensure the SensorTag is up and listening to BLE incoming connections
+3. From you host, login AgileOS at http://localhost:8000
+4. Open the device manager, register and connect to the SensorTag device
+5. Open NodeRed and import the preconfigured `Library/test_sensortag_mqtt` flow
+6. Verify everything is connected correctly (websockets for sensortag and mqtt clients to iot.eclipse.org)
+7. Use Mosquitto MQTT client to subscribe to available topics:
+<pre>
+    mosquitto_sub -h iot.eclipse.org -t saclay/agile/sensors/temperature
+    mosquitto_sub -h iot.eclipse.org -t saclay/agile/sensors/humidity
+</pre>
 
 ## Upcoming support
 
