@@ -38,7 +38,7 @@ You can set this up from your command line on your local computer with the comma
         -L3000:localhost:3000 -L2000:localhost:2000 agile-pi-2
 ```
 
-At this point, you can access AGILE OS from your local computer, in a browser, at http://127.0.0.1:8000
+At this point, you can access AGILE OS from your local computer, in a browser, at http://localhost:8000
 
 ## Connecting with RIOT nodes using IEEE 802.15.4
 
