@@ -2,19 +2,19 @@
 
 ### Available hardware
 
-- Two AGILE Gateways (makers version, RaspberryPi) are deployed and available in the
+- Several AGILE Gateways (makers version, RaspberryPi) are deployed and available in the
 [Saclay site testbed](https://www.iot-lab.info/deployment/saclay/)
 
-- Each AGILE Gateway is connected via serial USB to an
+- Also available on the same IoT-Lab site: hundreds of [IoT-Lab M3 nodes](https://www.iot-lab.info/hardware/m3/), with bare-metal access. 
+IoT-Lab M3 are custom nodes which communicate via IEEE 802.15.4 wireless transcievers.
+Other types of nodes, commercially available, are also available on IoT-lab: Nordic nrf52dk (BLE wireless transciever), Nordic nrf52840dk (BLE and IEEE 802.15.4 wireless transcievers), ST B-L072Z-LRWAN1 (LoRa wireless transciever), Zolertia Firefly (IEEE 802.15.4 and subGHz wireless transcievers).
+
+- An  AGILE Gateway (`agile-pi-3`) uses IEEE 802.15.4 to communicate with IoT-lab nodes.
+It is connected via serial USB to an
 [Atmel SAMR21](http://www.atmel.com/tools/atsamr21-xpro.aspx)
 board which offers IEEE 802.15.4 wireless connection. The attached SAMR21 board
 can either be used from the Pi as client node, or as border router (see below).
-
-- Each AGILE Gateway is observable via a webcam streamed online at [agile-pi-2](http://demo-fit.saclay.inria.fr/agile-pi-2?action=stream)
-and [agile-pi-3](http://demo-fit.saclay.inria.fr/agile-pi-3?action=stream)
-
-- Also available on the same IoT-Lab site: hundreds of [IoT-Lab M3 nodes](https://www.iot-lab.info/hardware/m3/), with bare-metal access. 
-IoT-Lab M3 nodes communicate via IEEE 802.15.4 wireless transcievers.
+The other AGILE gateways use instead Bluetooth Low Energy (BLE) to connect to IoT-lab nodes.
 
 ## Connecting to the AGILE Gateways
 
@@ -39,6 +39,50 @@ You can set this up from your command line on your local computer with the comma
 ```
 
 At this point, you can access AGILE OS from your local computer, in a browser, at http://localhost:8000
+
+## Connecting with RIOT nodes using Bluetooth Low-Energy
+
+Using AGILE gateway `agile-pi-2` and Nordic nrf52dk boards available on IoT-lab.
+
+*Preliminary*: you must either have the necessary toolchain to compile RIOT, or a VM as described in the [RIOT Tutorial](https://github.com/RIOT-OS/Tutorials).
+
+### Clone and compile RIOT
+
+Clone the repositories and jump into the right directory using the following command in your terminal:
+
+    git clone https://github.com/Agile-IoT/iotp-ble-riot.git && cd iotp-ble-riot && git clone https://github.com/RIOT-OS/RIOT.git && cd RIOT && git checkout 83abf11f2f56dbf389edde66f89f891ec7a7929e && cd ..
+
+Compile RIOT for the Nordic nrf52dk board by typing the following command in your terminal:
+
+    BOARD=nrf52dk make
+
+The result of this compilation is the firmware `eid_ble.elf` located in `bin/nrf52dk/`.
+
+### Book and Flash IoT-lab node
+
+Using the [IoT-lab webportal](https://www.iot-lab.info/) book an nrf52dk node, flash it with the firmware `eid_ble.elf` and run that by launching an experiment with this node.
+
+In your terminal, login via `ssh` to the IoT-lab frontend (`ssh username@saclay.iot-lab.info`) and connect to the UART output of the node to with the command `nc nrf52dk-1 20000` (assuming the node you booked is nrf52dk-1).
+
+You are now in the RIOT shell, running on the nrf52dk. In the shell, type `reboot` and then `help` to see the prompt and the available commands.
+
+See this [guide](https://github.com/Agile-IoT/iotp-ble-riot) for further instructions.
+
+### Connect to IoT-lab AGILE gateway 
+
+In another terminal, type the below command to pen an SSH tunnel to the gateways to map Agile OS local ports on your local host:
+<pre>
+    ssh -L8080:localhost:8080 -L8000:localhost:8000 \
+            -L1880:localhost:1880 -L8083:localhost:8083 -L8086:localhost:8086 \
+            -L3000:localhost:3000 -L2000:localhost:2000 agile-pi-2
+</pre>
+
+### Log into AGILE OS and Connect to RIOT
+
+1. In your browser, launch AGILE OS by accessing http://localhost:8000
+2. Open the device manager (in the top left drop-down menu), discover and register to the device named `SensorTag RIOT`.
+3. Take a look at sensor data received in real time, by clicking on `Devices` then on `View Data` on the registered SensorTag RIOT node.
+
 
 ## Connecting with RIOT nodes using IEEE 802.15.4
 
